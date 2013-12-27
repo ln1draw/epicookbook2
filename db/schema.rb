@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131224003410) do
+ActiveRecord::Schema.define(version: 20131227064016) do
 
   create_table "filters", force: true do |t|
     t.datetime "created_at"
@@ -21,30 +21,57 @@ ActiveRecord::Schema.define(version: 20131224003410) do
   create_table "ingredient_recipes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ingredient_id"
+    t.integer  "recipe_id"
   end
 
   create_table "ingredients", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "recipes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+    t.string   "image"
+    t.string   "name"
+  end
+
+  create_table "steps", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "step_description"
   end
 
   create_table "user_recipes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "recipe_id"
   end
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",         default: false
+    t.boolean  "admin",                  default: false
     t.string   "username"
     t.string   "email_address"
     t.string   "password"
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -3,12 +3,26 @@
 <head>
   <title>Epicookbook</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "semantic-ui.css" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id='header'>
+    <div id='logo'>
+      <%= link_to(image_tag('logo.jpg', :alt => "logo", :title => "Welcome"),"/") %>
+    </div>
+  </div>
 
-<%= yield %>
+  <div class='ui yellow inverted vertical menu'>
+    <a class='item' href='/recipes'>Recipes</a>
+    <a class='item' href='/ingredients'>Ingredients</a>
+  </div>
+
+
+  <div class='contents'>
+    <%= yield %>
+  </div>
 
 </body>
 </html>

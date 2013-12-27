@@ -34,6 +34,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'therubyracer', platforms: :ruby 
+gem 'less-rails'
+gem 'autoprefixer-rails'
+gem 'semantic-ui-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
