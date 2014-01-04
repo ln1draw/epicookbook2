@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :recipes, through: :user_recipes
-  has_many :filters
+
   validates :username, presence: true
 end
