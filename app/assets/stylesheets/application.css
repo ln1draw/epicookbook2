@@ -10,12 +10,19 @@
   border: 4px solid black;
   box-shadow: 12px 10px 7px black; 
 }
+#login{
+  float: right;
+}
 #left-nav-bar{
   float: left;
   height: 700px;
   background: orange;
   width: 145px;
   box-shadow: 5px 1px 5px black;
+}
+a{
+  color: white;
+  text-decoration: none;
 }
 .contents{
   background: white;
