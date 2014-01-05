@@ -18,6 +18,9 @@
           <div class='ui purple button'>
             <%= link_to "Sign Out", sessions_path, :method => :delete %>
           </div>
+          <div class='ui purple button'>
+            <%= link_to "Your Profile", :controller => "users", :action => "show" %>
+          </div>
       <% else %>
         <div class='ui purple button'>
           <%= link_to "Sign Up", :controller => "users", :action => "new" %>

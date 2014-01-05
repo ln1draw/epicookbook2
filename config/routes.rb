@@ -1,7 +1,7 @@
 Epicookbook::Application.routes.draw do
 
   # devise_for :users
-  resources :filters
+  resources :dietary_restrictions
   resources :recipes
   resources :users
   resources :ingredients
@@ -9,6 +9,7 @@ Epicookbook::Application.routes.draw do
 
   root 'welcome#index'
 
+  get 'users/show'  => 'users#show'
   delete 'sessions' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.

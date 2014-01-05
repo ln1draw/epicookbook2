@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140104190746) do
+ActiveRecord::Schema.define(version: 20140104224904) do
 
-  create_table "filters", force: true do |t|
+  create_table "dietary_restrictions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

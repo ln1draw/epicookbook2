@@ -1,0 +1,25 @@
+<h1>Listing dietary_restrictions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dietary_restrictions.each do |dietary_restriction| %>
+      <tr>
+        <td><%= link_to 'Show', dietary_restriction %></td>
+        <td><%= link_to 'Edit', edit_dietary_restriction_path(dietary_restriction) %></td>
+        <td><%= link_to 'Destroy', dietary_restriction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New dietary_restriction', new_dietary_restriction_path %>

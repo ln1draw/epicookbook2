@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class='ui purple button'>
+  <%= link_to "New Filter", :controller => "dietary_restrictions", :action => "index" %>
+</div><br>
+My Filters
+<% unless current_user.nil? %>
+  
+
+<div class="user-content">
+  <%= link_to 'Edit', edit_user_path(@user) %>
+</div>
