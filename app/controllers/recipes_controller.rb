@@ -31,6 +31,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        @recipe.ingredients.each {|ingredient| @recipe.set_amount_and_unit(ingredient.id, params[:amount], params[:ingredient_recipe][:unit])}
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render action: 'show', status: :created, location: @recipe }
       else
@@ -72,6 +73,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :image, :ingredients => {}, :steps => {})
+      params.require(:recipe).permit(:name, :description, :image, :amount, :unit, :ingredients => {}, :steps => {})
     end
 end

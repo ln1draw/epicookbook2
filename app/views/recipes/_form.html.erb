@@ -15,7 +15,9 @@
   <%= f.text_field :name %><br>
   <%= f.label 'Description' %>
   <%= f.text_field :description %><br>
-  <%= f.select(:ingredients, @ingredients, {}, { :multiple => true } )%>
+  <%= text_field_tag :amount %>
+  <%= select :ingredient_recipe, :unit, options_for_select(%w[teaspoon tablespoon cup ounce pound pint quart gallon liter gram unit]), include_blank: true %>
+  <%= f.select(:ingredients, @ingredients, {include_blank: true}, { :multiple => true } )%>
 
 
   <div class="actions">

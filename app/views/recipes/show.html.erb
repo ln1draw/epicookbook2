@@ -3,8 +3,11 @@
 <h1><%= @recipe.name %></h1>
 <p><%= @recipe.description %></p>
 <p>
-  <strong>Ingredients</strong>
+  <strong>Ingredients</strong><br>
   <% @recipe.ingredients.each do |ingredient| %>
+    <% array = @recipe.get_amount_and_unit(ingredient.id) %>
+    <%= array[0] %>
+    <%= array[1].pluralize(array[0]) %>
     <%= ingredient.name %>
   <% end %>
 </p>
