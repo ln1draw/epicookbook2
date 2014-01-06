@@ -2,6 +2,8 @@
 
 <h1><%= @recipe.name %></h1>
 <p><%= @recipe.description %></p>
+<% userid = @recipe.user_id %>
+<p>Contributed by <%= User.find(userid).username %>
 <p>
   <strong>Ingredients</strong><br>
   <% @recipe.ingredients.each do |ingredient| %>

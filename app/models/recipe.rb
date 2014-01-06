@@ -23,12 +23,15 @@ class Recipe < ActiveRecord::Base
 
   def set_amount_and_unit(ingredient_id, amount, unit)
     get_ingredient_recipe(ingredient_id)
-    puts '___________'
-    puts @ingredient_recipe
-    puts @ingredient_recipe[0]
-    puts amount
-    puts unit
-    puts '____________'
     IngredientRecipe.update(@ingredient_recipe[0], amount: amount, unit: unit)
+  end
+
+  def self.filter(dietary_restrictions = nil, search_term = nil)
+    @filter = [dietary_restrictions, search_term].flatten
+    if dietary_restrictions
+      by_dietary_restrictions(dietary_restrictions)
+    elsif search_term 
+      find(:all, :conditions => ['name LIKE ?', "%#{search_term}%"])
+    end
   end
 end

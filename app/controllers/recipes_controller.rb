@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.filter(params[:dietary_restrictions], params[:search_term])
   end
 
   # GET /recipes/1
@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = @current_user.id
     @ingredients = Ingredient.all.collect { |p| [p.name, p.id] }
     @recipe.add_ingredients(params[:recipe][:ingredients])
 

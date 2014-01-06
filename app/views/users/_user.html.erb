@@ -1,9 +1,15 @@
 <div>
-  <h3>
-      User_id#: <%= user.id %>,         
-      Username: <%= user.username %>, 
-      Email:    <%= user.email %>,          
-
+  <h3>   
+    Username: <%= @user.username %><br>
+    Email:    <%= @user.email %> 
+    <div class='ui purple button'>
+      <%= link_to "Update information", :controller => "users", :action => "edit" %>
+    </div><br>
+    Recipes:
+    <% @recipes = @user.find_recipes %>
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe.name, recipe %> <br>
+    <% end %>
   </h3>
   <br>
 </div>

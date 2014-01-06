@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   has_many :recipes, through: :user_recipes
   has_many :dietary_restrictions
   validates :username, presence: true
+
+  def find_recipes
+    Recipe.where(user_id: self.id)
+  end
 end

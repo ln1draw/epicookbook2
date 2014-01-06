@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<div class='ui purple button'>
-  <%= link_to "New Filter", :controller => "dietary_restrictions", :action => "index" %>
-</div><br>
-My Filters
-<% unless current_user.nil? %>
-  
-
-<div class="user-content">
-  <%= link_to 'Edit', edit_user_path(@user) %>
-</div>
+<% if current_user.nil? %>
+  You must be logged in to view this page!
+<% else %>
+  <div class='ui purple button'>
+    <%= link_to "New Filter", :controller => "dietary_restrictions", :action => "index" %>
+  </div><br>
+  My Filters
+  <%= render 'user' %>
+<% end %>
