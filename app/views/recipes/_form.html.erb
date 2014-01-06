@@ -15,9 +15,11 @@
   <%= f.text_field :name %><br>
   <%= f.label 'Description' %>
   <%= f.text_field :description %><br>
-  <%= f.select(:ingredients, @ingredients, {}, { :multiple => true } )%>
-
-
+  <%= text_field_tag :amount %>
+  <%= select :ingredient_recipe, :unit, options_for_select(%w[teaspoon tablespoon cup ounce pound pint quart gallon liter gram]) %>
+  <%= select :ingredient, 1, @ingredients, {}, class: 'ingredient'%>
+  <%= select :ingredient, 2, @ingredients, {}, class: 'ingredient'%>
+  <%= hidden_field_tag :ingredients, '', class: 'ingredients' %>
   <div class="actions">
     <%= f.submit %>
   </div>
