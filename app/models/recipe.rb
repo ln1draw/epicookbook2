@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
   has_many :users, through: :user_recipes
+  has_many :user_recipes
   has_many :ingredients, through: :ingredient_recipes
   has_many :steps
   has_many :ingredient_recipes
@@ -32,6 +33,8 @@ class Recipe < ActiveRecord::Base
       by_dietary_restrictions(dietary_restrictions)
     elsif search_term 
       find(:all, :conditions => ['name LIKE ?', "%#{search_term}%"])
+    else
+      Recipe.all
     end
   end
 end

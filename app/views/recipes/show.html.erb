@@ -10,9 +10,16 @@
     <% array = @recipe.get_amount_and_unit(ingredient.id) %>
     <%= array[0] %>
     <%= array[1].pluralize(array[0]) %>
-    <%= ingredient.name %>
+    <%= ingredient.name.pluralize(array[0]) %>
   <% end %>
 </p>
+
+<% unless @current_user.nil? %>
+  <%= form_tag('/recipes/add_recipe') do %>
+    <%= hidden_field_tag :id, @recipe.id %>
+    <%= submit_tag 'Add to Cookbook!' %>
+  <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

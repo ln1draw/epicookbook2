@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :add_recipe]
 
   # GET /recipes
   # GET /recipes.json
@@ -10,6 +10,11 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+  end
+
+  def add_recipe
+    @current_user.add_recipe(@recipe.id)
+    redirect_to :back, notice: "Recipe has been added to your cookbook!"
   end
 
   # GET /recipes/new
@@ -27,6 +32,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = @current_user.id
+    @current_user.add_recipe(@recipe.id)
     @ingredients = Ingredient.all.collect { |p| [p.name, p.id] }
     @recipe.add_ingredients(params[:recipe][:ingredients])
 

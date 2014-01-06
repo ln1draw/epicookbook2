@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  Choose one of our popular lists:
+  <%= f.select(:existing_filter, options_for_select(%w[vegan vegetarian gluten-free pescetarian paleo nut-free legume-free]), include_blank: true %>)
+  <%= f.submit %>
+
 <% end %>

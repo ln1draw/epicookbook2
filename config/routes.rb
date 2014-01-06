@@ -9,8 +9,9 @@ Epicookbook::Application.routes.draw do
 
   root 'welcome#index'
 
-  get 'users/show'  => 'users#show'
-  delete 'sessions' => 'sessions#destroy'
+  get    'users/show'         => 'users#show'
+  delete 'sessions'           => 'sessions#destroy'
+  post   'recipes/add_recipe' => 'recipes#add_recipe'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

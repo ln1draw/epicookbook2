@@ -1,4 +1,4 @@
 class DietaryRestriction < ActiveRecord::Base
-  belongs_to :user
+  has_many :users, through: :dr_users
 end
 
