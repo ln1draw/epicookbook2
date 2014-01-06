@@ -19,7 +19,7 @@
   <%= select :ingredient_recipe, :unit, options_for_select(%w[teaspoon tablespoon cup ounce pound pint quart gallon liter gram]) %>
   <%= select :ingredient, 1, @ingredients, {}, class: 'ingredient'%>
   <%= select :ingredient, 2, @ingredients, {}, class: 'ingredient'%>
-  <%= hidden_field_tag :ingredients, '', class: 'ingredients' %>
+  <%= hidden_field_tag :ingredients, ' ', class: 'ingredients' %>
   <div class="actions">
     <%= f.submit %>
   </div>
