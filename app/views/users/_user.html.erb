@@ -5,9 +5,13 @@
     <div class='ui purple button'>
       <%= link_to "Update information", :controller => "users", :action => "edit" %>
     </div><br>
-    Recipes:
+    Recipes Contributed By <%= @user.username %>: <br>
     <% @recipes = @user.find_recipes %>
     <% @recipes.each do |recipe| %>
+      <%= link_to recipe.name, recipe %> <br>
+    <% end %>
+    <%= @user.username %>'s Cookbook: <br>
+    <% @user.recipes.each do |recipe| %>
       <%= link_to recipe.name, recipe %> <br>
     <% end %>
   </h3>

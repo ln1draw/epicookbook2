@@ -11,12 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106025625) do
+ActiveRecord::Schema.define(version: 20140106034634) do
 
-  create_table "dietary_restrictions", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "dietary_restrictions" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "dr_users", force: true do |t|
     t.integer  "user_id"

@@ -12,7 +12,12 @@
   <% end %>
 
   Choose one of our popular lists:
-  <%= f.select(:existing_filter, options_for_select(%w[vegan vegetarian gluten-free pescetarian paleo nut-free legume-free]), include_blank: true %>)
-  <%= f.submit %>
+  <%= f.select :popular, options_for_select(%w[vegan vegetarian gluten-free pescetarian paleo nut-free legume-free]), include_blank: true %><br>
+  Or, create your own!
+  <%= f.label "Name your new filter!" %>
+  <%= f.text_field :name %>
+  Almost done! Now, select the ingredients that you don't want to show up in any of the recipes you find on the site.
+  
+  <%= f.submit 'Submit'%>
 
 <% end %>
