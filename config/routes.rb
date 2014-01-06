@@ -1,6 +1,9 @@
 Epicookbook::Application.routes.draw do
 
-  # devise_for :users
+  devise_for :users
+  devise_scope :user do
+    get "/sessions/new" => "devise/sessions#new"
+  end
   resources :dietary_restrictions
   resources :recipes
   resources :users

@@ -31,14 +31,28 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = @current_user.id
-    @current_user.add_recipe(@recipe.id)
+    # this block exists because users are broken right now. It should
+    # be deleted once the user authentication error is resolved.
+    if @current_user.nil?
+      @recipe.user_id = 1
+    else
+      @recipe.user_id = @current_user.id
+    end
     @ingredients = Ingredient.all.collect { |p| [p.name, p.id] }
-    @recipe.add_ingredients(params[:recipe][:ingredients])
+    these_ingredients = params[:ingredients].split
+    these_amounts = params[:amount].split
+    these_units = params[:unit].split
+    @recipe.add_ingredients(these_ingredients)
 
     respond_to do |format|
       if @recipe.save
-        @recipe.ingredients.each {|ingredient| @recipe.set_amount_and_unit(ingredient.id, params[:amount], params[:ingredient_recipe][:unit])}
+        unless @current_user.nil?
+          @current_user.add_recipe(@recipe.id)
+        end
+        @recipe.ingredients.each_with_index do |ingredient, i| 
+          @recipe.set_amount_and_unit(ingredient.id, these_amounts[i], these_units[i])
+        end
+
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render action: 'show', status: :created, location: @recipe }
       else

@@ -10,7 +10,7 @@
     <% array = @recipe.get_amount_and_unit(ingredient.id) %>
     <%= array[0] %>
     <%= array[1].pluralize(array[0]) %>
-    <%= ingredient.name.pluralize(array[0]) %>
+    <%= ingredient.name %><br>
   <% end %>
 </p>
 

@@ -15,20 +15,22 @@
     <div id='login'>
       <% if current_user.present? %>
           Hi there, <%= current_user.username.titleize %>
-          <div class='ui purple button'>
+          <div class='ui small gray button'>
             <%= link_to "Sign Out", sessions_path, :method => :delete %>
           </div>
-          <div class='ui purple button'>
+          <div class='ui small gray button'>
             <%= link_to "Your Profile", :controller => "users", :action => "show" %>
           </div>
       <% else %>
-        <div class='ui purple button'>
-          <%= link_to "Sign Up", :controller => "users", :action => "new" %>
+        <div class='ui small gray button'>
+          <a href='/users/new'>Sign Up</a>
         </div>
-        <div class='ui purple button'>
-          <%= link_to "Log In", :controller => "sessions", :action => "new" %>
+        <div class='ui small gray button'>
+          <a href='/sessions/new'>Log In</a>
         </div>
       <% end %>
+    </div>
+    <div id='searchbar'>
       <%= form_tag(recipes_path, method: :get) do %>
         <%= label_tag("Let's get cooking!") %>
         <%= text_field_tag :search_term, params[:search_term] %>
@@ -37,7 +39,7 @@
     </div>
   </div>
 
-  <div class='ui purple inverted vertical menu'>
+  <div class='ui gray inverted vertical menu'>
     <a class='item' href='/recipes'>Recipes</a>
     <a class='item' href='/ingredients'>Ingredients</a>
   </div>

@@ -1,4 +1,4 @@
-<%= form_for(@recipe) do |f| %>
+<%= form_for(@recipe, :html => { :class => "recipe"}) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -14,14 +14,26 @@
   <%= f.label 'Recipe Name' %>
   <%= f.text_field :name %><br>
   <%= f.label 'Description' %>
-  <%= f.text_field :description %><br>
-  <%= text_field_tag :amount %>
+  <%= f.text_field :description %><br><br>
+  Amount, Unit, Ingredient<br>
+  (example: 2 Tablespoons Butter)
+  <div class="ingredient_container">
+    <div>
+      <%= text_field_tag option_tags = nil, default = '', class: 'single_amount' %>
+      <%= select name = nil, option_tags = nil, options_for_select(%w[teaspoon tablespoon cup ounce pound pint quart gallon liter gram unit]), {include_blank: true}, class: 'single_unit' %>
+      <%= select name = nil, option_tags = nil, @ingredients, {include_blank: true}, class: 'ingredient' %>
+      <%= hidden_field_tag :ingredients, ' ', class: 'ingredients' %>
+      <%= hidden_field_tag :amount, ' ', class: 'amount' %>
+      <%= hidden_field_tag :unit, ' ', class: 'unit' %>
+    </div>
+  </div>
 
-  <%= select :ingredient_recipe, :unit, options_for_select(%w[teaspoon tablespoon cup ounce pound pint quart gallon liter gram unit]), include_blank: true %>
-  <%= select :ingredient, 1, @ingredients, {}, class: 'ingredient'%>
-  <%= select :ingredient, 2, @ingredients, {}, class: 'ingredient'%>
-  <%= hidden_field_tag :ingredients, ' ', class: 'ingredients' %>
-
+  <br>Directions <br>
+      <ol class="step_container">
+        <li><%= text_field_tag option_tags = nil, default = '', class: 'a_step' %>
+      </ol>
+      <div class='ui small gray button next_step'>Next step</div></li>
+      <%= hidden_field_tag :steps, ' ', class: 'steps' %>
   <div class="actions">
     <%= f.submit %>
   </div>
