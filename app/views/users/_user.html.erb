@@ -2,15 +2,19 @@
   <h3>   
     Username: <%= @user.username %><br>
     Email:    <%= @user.email %> 
-    <div class='ui purple button'>
-      <%= link_to "Update information", :controller => "users", :action => "edit" %>
-    </div><br>
-    Recipes Contributed By <%= @user.username %>: <br>
+    <% unless @current_user.nil? %>
+      <% if @current_user.id == @user.id %><br> 
+        <div class='ui small gray button'>
+        <%= link_to "Update information", :controller => "users", :action => "edit" %>
+        </div><br><br><br>
+      <% end %>
+    <% end %>
+    Recipes Contributed By <%= @user.username %>: <br><br>
     <% @recipes = @user.find_recipes %>
     <% @recipes.each do |recipe| %>
       <%= link_to recipe.name, recipe %> <br>
-    <% end %>
-    <%= @user.username %>'s Cookbook: <br>
+    <% end %><br><br><br>
+    <%= @user.username %>'s Cookbook: <br><br>
     <% @user.recipes.each do |recipe| %>
       <%= link_to recipe.name, recipe %> <br>
     <% end %>

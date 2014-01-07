@@ -30,10 +30,11 @@
 
   <br>Directions <br>
       <ol class="step_container">
-        <li><%= text_field_tag option_tags = nil, default = '', class: 'a_step' %>
+        <li><%= text_field_tag name = "step", default = '', class: 'a_step' %></li>
       </ol>
-      <div class='ui small gray button next_step'>Next step</div></li>
-      <%= hidden_field_tag :steps, ' ', class: 'steps' %>
+        <% text_field_tag name = "step", default = '', class: 'a_step' %>
+      <div class='ui small gray button next_step'>Next step</div>
+      <%= hidden_field_tag :step, ' ', class: 'step' %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -31,24 +31,29 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-    # this block exists because users are broken right now. It should
-    # be deleted once the user authentication error is resolved.
-    if @current_user.nil?
-      @recipe.user_id = 1
-    else
-      @recipe.user_id = @current_user.id
-    end
+    @recipe.user_id = @current_user.id
     @ingredients = Ingredient.all.collect { |p| [p.name, p.id] }
     these_ingredients = params[:ingredients].split
     these_amounts = params[:amount].split
     these_units = params[:unit].split
+    these_steps = params[:step].split('line break')
+    these_steps.each_with_index do |step, i|
+      unless step.include /\w/
+        these_steps.delete_at(i)
+      # else
+      #   new_step = Step.new(step)
+      #   @recipe.steps << new_step
+      end
+    end
+    puts these_steps
+    puts these_steps.last
+    puts params[:step]
+    puts '________'
     @recipe.add_ingredients(these_ingredients)
 
     respond_to do |format|
       if @recipe.save
-        unless @current_user.nil?
-          @current_user.add_recipe(@recipe.id)
-        end
+        @current_user.add_recipe(@recipe.id)
         @recipe.ingredients.each_with_index do |ingredient, i| 
           @recipe.set_amount_and_unit(ingredient.id, these_amounts[i], these_units[i])
         end
@@ -94,6 +99,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :image, :amount, :unit, :ingredients => {}, :steps => {})
+      params.require(:recipe).permit(:name, :description, :image, :amount, :unit, :ingredients => {}, :step => {})
     end
 end

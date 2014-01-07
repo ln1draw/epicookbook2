@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106034634) do
+ActiveRecord::Schema.define(version: 20140106140230) do
 
 # Could not dump table "dietary_restrictions" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -38,14 +38,8 @@ ActiveRecord::Schema.define(version: 20140106034634) do
     t.string   "name"
   end
 
-  create_table "recipes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description"
-    t.string   "image"
-    t.string   "name"
-    t.integer  "user_id"
-  end
+# Could not dump table "recipes" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "steps", force: true do |t|
     t.datetime "created_at"

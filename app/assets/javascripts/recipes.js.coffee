@@ -27,19 +27,19 @@ $ ->
     $(".unit").val unit
 
   $("div.next_step").click ->
-    $("<li><input class='a_step' type='text' value=''/></li>").appendTo($("ol.step_container"))
+    $("<li><input class='a_step' name='step' type='text' value=''/></li>").appendTo($("ol.step_container"))
 
-    steps = ""
-    $("li.a_step").each (i, obj) ->
+    step = ""
+    $("input.a_step").each (i, obj) ->
       step += $(obj).val()
-      step += " "
-    $(".steps").val step
+      step += " line break "
+    $(".step").val step
 
   $("input.submit").click ->
-    steps = ""
-    $("li.a_step").each (i, obj) ->
+    step = ""
+    $("input.a_step").each (i, obj) ->
       step += $(obj).val()
-      step += " "
-    $(".steps").val step
+      step += " line break "
+    $(".step").val step
   
   $("select.ingredient").change add_row

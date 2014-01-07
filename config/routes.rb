@@ -1,8 +1,11 @@
 Epicookbook::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => "sessions"}
   devise_scope :user do
     get "/sessions/new" => "devise/sessions#new"
+    post "/sessions/user" => "devise/sessions#new"
+    root "welcome#index"
+    post '/sessions' => "sessions#create"
   end
   resources :dietary_restrictions
   resources :recipes
@@ -10,11 +13,12 @@ Epicookbook::Application.routes.draw do
   resources :ingredients
   resources :sessions
 
-  root 'welcome#index'
+  get '/' => 'sessions#new'
 
   get    'users/show'         => 'users#show'
   delete 'sessions'           => 'sessions#destroy'
   post   'recipes/add_recipe' => 'recipes#add_recipe'
+  post "/sessions/user" => "sessions#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
